@@ -1,158 +1,33 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Giacomo Piermanni – Portfolio</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giacomo Piermanni — Progetti</title>
   <style>
-    :root { --bg:#0e0e0f; --fg:#e9e9e9; --muted:#a8a8a8; --line:#1f1f21; }
-    * { box-sizing:border-box; }
-    html,body { margin:0; background:var(--bg); color:var(--fg); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    a { color:inherit; text-decoration:none; }
-
-    header { padding: 36px 20px 12px; text-align:center; }
-    h1 { margin:0 0 6px; font-size:28px; font-weight:600; letter-spacing:.3px; }
-    p.sub { margin:0; color:var(--muted); }
-
-    .wrap { max-width:1200px; margin: 0 auto; padding: 20px; display:grid; grid-template-columns: 1fr 1.2fr; gap: 28px; }
-    @media (max-width: 900px){ .wrap { grid-template-columns: 1fr; } }
-
-    /* Lista progetti */
-    .list { border-top:1px solid var(--line); }
-    .item { border-bottom:1px solid var(--line); }
-    .item button{
-      width:100%; background:transparent; border:0; color:inherit; text-align:left;
-      font-size:20px; padding:16px 6px; cursor:pointer; display:flex; align-items:center; gap:14px;
+    /* Se il font "Adobe Arabic" è installato sul tuo sistema, verrà usato.
+       Altrimenti userà i serif di sistema come fallback. */
+    html,body{margin:0;background:#fff;color:#222;font-family:"Adobe Arabic","Times New Roman",Georgia,serif}
+    .wrap{max-width:800px;margin:14vh auto;text-align:center;padding:0 16px}
+    ul{list-style:none;margin:0;padding:0}
+    li{margin:14px 0}
+    a{
+      color:inherit;text-decoration:none;
+      font-size:clamp(22px,3.2vw,40px); /* grande ma responsive */
     }
-    .item button:hover { opacity:.9; }
-    .dot { width:6px; height:6px; border-radius:999px; background:#7f7f82; }
-    .item.open .dot { background:#cfcfd3; }
-
-    /* Anteprima */
-    .preview {
-      position:sticky; top:20px; border:1px solid var(--line); border-radius:10px; overflow:hidden;
-      aspect-ratio: 4/3; background:#121214; display:flex; align-items:center; justify-content:center;
-    }
-    .preview img { width:100%; height:100%; object-fit:cover; display:block; opacity:0; transition:opacity .15s ease; }
-    .preview img.show { opacity:1; }
-    .preview .hint { color:var(--muted); font-size:14px; }
-
-    /* Galleria */
-    .gallery { display:none; padding: 8px 0 18px; }
-    .item.open .gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap:10px; }
-    .gallery img { width:100%; height:auto; border-radius:8px; background:#17171a; }
-
-    /* Lightbox */
-    .lightbox{ position:fixed; inset:0; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; padding:20px; z-index:9999;}
-    .lightbox.open{ display:flex; }
-    .lightbox img{ max-width:95vw; max-height:90vh; border-radius:10px; }
-    .lightbox .close{ position:fixed; top:16px; right:20px; font-size:30px; color:#ddd; cursor:pointer; }
+    a:focus{outline:none}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Giacomo Piermanni</h1>
-    <p class="sub">Portfolio fotografico</p>
-  </header>
-
   <main class="wrap">
-    <!-- Colonna sinistra -->
-    <section class="list" id="projects">
-      
-      <!-- PROGETTO: Valle d'Aosta -->
-      <div class="item" data-preview="img/previews/valledaosta.jpg" data-name="Valle d'Aosta" data-path="img/ValleDAosta" data-files="05.jpg,06.jpg,07.jpg,08.jpg,09.jpg,10.jpg,11.jpg,12.jpg,13.jpg,14.jpg,15.jpg,16.jpg,17.jpg,18.jpg">
-        <button type="button"><span class="dot"></span> Valle d'Aosta</button>
-        <div class="gallery"></div>
-      </div>
+    <ul>
+      <!-- Esempio: 2025 Valle d'Aosta -->
+      <li><a href="projects/valle-daosta.html"><span class="year">2025</span> Valle d'Aosta</a></li>
 
-      <!-- PROGETTO 2 (esempio) -->
-      <div class="item" data-preview="img/previews/montagna.jpg" data-name="Montagna" data-path="img/Montagna" data-files="01.jpg,02.jpg,03.jpg">
-        <button type="button"><span class="dot"></span> Montagna</button>
-        <div class="gallery"></div>
-      </div>
-
-      <!-- PROGETTO 3 (esempio) -->
-      <div class="item" data-preview="img/previews/street.jpg" data-name="Street" data-path="img/Street" data-files="01.jpg,02.jpg">
-        <button type="button"><span class="dot"></span> Street</button>
-        <div class="gallery"></div>
-      </div>
-
-    </section>
-
-    <!-- Colonna destra: anteprima -->
-    <aside class="preview" id="previewBox">
-      <span class="hint">Passa col mouse sui titoli per vedere un’anteprima</span>
-      <img id="previewImg" alt="">
-    </aside>
+      <!-- Aggiungerai altre righe così:
+      <li><a href="projects/nome-progetto.html">202X Nome progetto</a></li>
+      -->
+    </ul>
   </main>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="close" id="lbClose">×</span>
-    <img id="lbImg" alt="">
-  </div>
-
-  <footer style="text-align:center;color:#8c8c8f;font-size:13px;padding:24px 0 40px;">
-    © <span id="year"></span> Giacomo Piermanni – Tutti i diritti riservati
-  </footer>
-
-  <script>
-    // anno footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // preview on hover
-    const previewImg = document.getElementById('previewImg');
-    const previewBox = document.getElementById('previewBox');
-    document.querySelectorAll('.item').forEach(item => {
-      const btn = item.querySelector('button');
-      btn.addEventListener('mouseenter', () => {
-        const src = item.dataset.preview;
-        if (src) {
-          previewImg.src = src;
-          previewImg.classList.add('show');
-          const hint = previewBox.querySelector('.hint');
-          if (hint) hint.remove();
-        }
-      });
-    });
-
-    // click → toggle gallery & lazy load
-    document.querySelectorAll('.item').forEach(item => {
-      const btn = item.querySelector('button');
-      const gal = item.querySelector('.gallery');
-      let loaded = false;
-
-      btn.addEventListener('click', () => {
-        item.classList.toggle('open');
-        if (!loaded) {
-          const base = item.dataset.path;
-          const files = (item.dataset.files || '').split(',').map(s => s.trim()).filter(Boolean);
-          files.forEach(f => {
-            const im = new Image();
-            im.loading = 'lazy';
-            im.src = `${base}/${f}`;
-            im.alt = `${item.dataset.name} – ${f}`;
-            im.addEventListener('click', () => openLightbox(im.src, im.alt));
-            gal.appendChild(im);
-          });
-          loaded = true;
-        }
-      });
-    });
-
-    // lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbClose = document.getElementById('lbClose');
-    function openLightbox(src, alt){ lbImg.src = src; lbImg.alt = alt; lb.classList.add('open'); }
-    function closeLightbox(){ lb.classList.remove('open'); lbImg.src=''; }
-    lbClose.addEventListener('click', closeLightbox);
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
-  </script>
 </body>
 </html>
