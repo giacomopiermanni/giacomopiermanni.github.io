@@ -1,57 +1,28 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Archivio fotografico</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archivio fotografico — Giacomo Piermanni</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #000;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 10px;
-      padding: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .gallery img:hover {
-      transform: scale(1.02);
-    }
-    /* fullscreen */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .lightbox:target {
-      display: flex;
-    }
+    :root{ --fg:#111; --line:#eee; }
+    html,body{margin:0;background:#fff;color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);
+      display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-size:14px}
+    header a{color:inherit;text-decoration:none} header a:hover{text-decoration:underline}
+
+    .grid{max-width:1400px;margin:20px auto;padding:0 14px;
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+    .grid img{width:100%;height:150px;object-fit:cover;border-radius:6px;cursor:zoom-in;background:#f4f4f4;transition:transform .15s ease}
+    .grid img:hover{transform:scale(1.03)}
+
+    /* Lightbox */
+    .lb{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:9999}
+    .lb.open{display:flex}
+    .lb img{max-width:96vw;max-height:94vh;border-radius:8px}
+    .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;color:#fff;cursor:pointer;
+      user-select:none;padding:16px;background:rgba(0,0,0,.3);border-radius:6px}
+    .prev{left:16px} .next{right:16px}
   </style>
 </head>
 <body>
@@ -60,148 +31,180 @@
     <div><a href="mailto:giacomopiermanni@gmail.com">giacomopiermanni@gmail.com</a></div>
   </header>
 
-  <div class="gallery">
+  <!-- MINIATURE: metto tutte le immagini qui sotto -->
+  <main class="grid" id="grid">
     <!-- Aosta -->
-    <a href="#img1"><img src="img/Aosta-1.jpg"></a>
-    <a href="#img2"><img src="img/Aosta-2.jpg"></a>
-    <a href="#img3"><img src="img/Aosta-3.jpg"></a>
-    <a href="#img4"><img src="img/Aosta-4.jpg"></a>
-    <a href="#img5"><img src="img/Aosta-5.jpg"></a>
-    <a href="#img6"><img src="img/Aosta-6.jpg"></a>
-    <a href="#img7"><img src="img/Aosta-7.jpg"></a>
-    <a href="#img8"><img src="img/Aosta-8.jpg"></a>
-    <a href="#img9"><img src="img/Aosta-9.jpg"></a>
-    <a href="#img10"><img src="img/Aosta-10.jpg"></a>
-    <a href="#img11"><img src="img/Aosta-11.jpg"></a>
-    <a href="#img12"><img src="img/Aosta-12.jpg"></a>
-    <a href="#img13"><img src="img/Aosta-13.jpg"></a>
-    <a href="#img14"><img src="img/Aosta-14.jpg"></a>
+    <img src="img/Aosta-1.jpg" alt="">
+    <img src="img/Aosta-2.jpg" alt="">
+    <img src="img/Aosta-3.jpg" alt="">
+    <img src="img/Aosta-4.jpg" alt="">
+    <img src="img/Aosta-5.jpg" alt="">
+    <img src="img/Aosta-6.jpg" alt="">
+    <img src="img/Aosta-7.jpg" alt="">
+    <img src="img/Aosta-8.jpg" alt="">
+    <img src="img/Aosta-9.jpg" alt="">
+    <img src="img/Aosta-10.jpg" alt="">
+    <img src="img/Aosta-11.jpg" alt="">
+    <img src="img/Aosta-12.jpg" alt="">
+    <img src="img/Aosta-13.jpg" alt="">
+    <img src="img/Aosta-14.jpg" alt="">
 
     <!-- Castelluccio 01 -->
-    <a href="#img15"><img src="img/Castelluccio 01-1.jpg"></a>
-    <a href="#img16"><img src="img/Castelluccio 01-3.jpg"></a>
-    <a href="#img17"><img src="img/Castelluccio 01-4.jpg"></a>
-    <a href="#img18"><img src="img/Castelluccio 01-5.jpg"></a>
-    <a href="#img19"><img src="img/Castelluccio 01-6.jpg"></a>
-    <a href="#img20"><img src="img/Castelluccio 01-7.jpg"></a>
-    <a href="#img21"><img src="img/Castelluccio 01-9.jpg"></a>
-    <a href="#img22"><img src="img/Castelluccio 01-10.jpg"></a>
-    <a href="#img23"><img src="img/Castelluccio 01-11.jpg"></a>
-    <a href="#img24"><img src="img/Castelluccio 01-12.jpg"></a>
-    <a href="#img25"><img src="img/Castelluccio 01-13.jpg"></a>
-    <a href="#img26"><img src="img/Castelluccio 01-14.jpg"></a>
-    <a href="#img27"><img src="img/Castelluccio 01-15.jpg"></a>
+    <img src="img/Castelluccio 01-1.jpg" alt="">
+    <img src="img/Castelluccio 01-3.jpg" alt="">
+    <img src="img/Castelluccio 01-4.jpg" alt="">
+    <img src="img/Castelluccio 01-5.jpg" alt="">
+    <img src="img/Castelluccio 01-6.jpg" alt="">
+    <img src="img/Castelluccio 01-7.jpg" alt="">
+    <img src="img/Castelluccio 01-9.jpg" alt="">
+    <img src="img/Castelluccio 01-10.jpg" alt="">
+    <img src="img/Castelluccio 01-11.jpg" alt="">
+    <img src="img/Castelluccio 01-12.jpg" alt="">
+    <img src="img/Castelluccio 01-13.jpg" alt="">
+    <img src="img/Castelluccio 01-14.jpg" alt="">
+    <img src="img/Castelluccio 01-15.jpg" alt="">
 
     <!-- Castelluccio 03 -->
-    <a href="#img28"><img src="img/Castelluccio 03-1.jpg"></a>
-    <a href="#img29"><img src="img/Castelluccio 03-2.jpg"></a>
-    <a href="#img30"><img src="img/Castelluccio 03-3.jpg"></a>
-    <a href="#img31"><img src="img/Castelluccio 03-4.jpg"></a>
-    <a href="#img32"><img src="img/Castelluccio 03-5.jpg"></a>
-    <a href="#img33"><img src="img/Castelluccio 03-6.jpg"></a>
-    <a href="#img34"><img src="img/Castelluccio 03-7.jpg"></a>
-    <a href="#img35"><img src="img/Castelluccio 03-8.jpg"></a>
-    <a href="#img36"><img src="img/Castelluccio 03-9.jpg"></a>
+    <img src="img/Castelluccio 03-1.jpg" alt="">
+    <img src="img/Castelluccio 03-2.jpg" alt="">
+    <img src="img/Castelluccio 03-3.jpg" alt="">
+    <img src="img/Castelluccio 03-4.jpg" alt="">
+    <img src="img/Castelluccio 03-5.jpg" alt="">
+    <img src="img/Castelluccio 03-6.jpg" alt="">
+    <img src="img/Castelluccio 03-7.jpg" alt="">
+    <img src="img/Castelluccio 03-8.jpg" alt="">
+    <img src="img/Castelluccio 03-9.jpg" alt="">
 
     <!-- Celle + Croazia -->
-    <a href="#img37"><img src="img/Celle-2.jpg"></a>
-    <a href="#img38"><img src="img/Croazia-1.jpg"></a>
-    <a href="#img39"><img src="img/Croazia-2.jpg"></a>
-    <a href="#img40"><img src="img/Croazia-3.jpg"></a>
+    <img src="img/Celle-2.jpg" alt="">
+    <img src="img/Croazia-1.jpg" alt="">
+    <img src="img/Croazia-2.jpg" alt="">
+    <img src="img/Croazia-3.jpg" alt="">
 
     <!-- Davide -->
-    <a href="#img41"><img src="img/Davide-1.jpg"></a>
-    <a href="#img42"><img src="img/Davide-2.jpg"></a>
-    <a href="#img43"><img src="img/Davide-3.jpg"></a>
-    <a href="#img44"><img src="img/Davide-4.jpg"></a>
+    <img src="img/Davide-1.jpg" alt="">
+    <img src="img/Davide-2.jpg" alt="">
+    <img src="img/Davide-3.jpg" alt="">
+    <img src="img/Davide-4.jpg" alt="">
 
-    <!-- Elena 01 -->
-    <a href="#img45"><img src="img/Elena 01-1.jpg"></a>
-    <a href="#img46"><img src="img/Elena 01-2.jpg"></a>
-    <a href="#img47"><img src="img/Elena 01-3.jpg"></a>
-    <a href="#img48"><img src="img/Elena 01-4.jpg"></a>
-    <a href="#img49"><img src="img/Elena 01-5.jpg"></a>
-
-    <!-- Elena 02 -->
-    <a href="#img50"><img src="img/Elena 02-1.jpg"></a>
-    <a href="#img51"><img src="img/Elena 02-2.jpg"></a>
-    <a href="#img52"><img src="img/Elena 02-4.jpg"></a>
+    <!-- Elena -->
+    <img src="img/Elena 01-1.jpg" alt="">
+    <img src="img/Elena 01-2.jpg" alt="">
+    <img src="img/Elena 01-3.jpg" alt="">
+    <img src="img/Elena 01-4.jpg" alt="">
+    <img src="img/Elena 01-5.jpg" alt="">
+    <img src="img/Elena 02-1.jpg" alt="">
+    <img src="img/Elena 02-2.jpg" alt="">
+    <img src="img/Elena 02-4.jpg" alt="">
 
     <!-- Gabriele + Matteo -->
-    <a href="#img53"><img src="img/Gabriele-1.jpg"></a>
-    <a href="#img54"><img src="img/Gabriele-2.jpg"></a>
-    <a href="#img55"><img src="img/Matteo-1.jpg"></a>
+    <img src="img/Gabriele-1.jpg" alt="">
+    <img src="img/Gabriele-2.jpg" alt="">
+    <img src="img/Matteo-1.jpg" alt="">
 
     <!-- Milano -->
-    <a href="#img56"><img src="img/Milano 01-1.jpg"></a>
-    <a href="#img57"><img src="img/Milano 01-2.jpg"></a>
-    <a href="#img58"><img src="img/Milano 01-3.jpg"></a>
-    <a href="#img59"><img src="img/Milano 01-4.jpg"></a>
-    <a href="#img60"><img src="img/Milano 01-5.jpg"></a>
+    <img src="img/Milano 01-1.jpg" alt="">
+    <img src="img/Milano 01-2.jpg" alt="">
+    <img src="img/Milano 01-3.jpg" alt="">
+    <img src="img/Milano 01-4.jpg" alt="">
+    <img src="img/Milano 01-5.jpg" alt="">
 
     <!-- Praga -->
-    <a href="#img61"><img src="img/Praga-1.jpg"></a>
-    <a href="#img62"><img src="img/Praga-2.jpg"></a>
+    <img src="img/Praga-1.jpg" alt="">
+    <img src="img/Praga-2.jpg" alt="">
 
     <!-- Sardegna -->
-    <a href="#img63"><img src="img/Sardegna-1.jpg"></a>
-    <a href="#img64"><img src="img/Sardegna-2.jpg"></a>
-    <a href="#img65"><img src="img/Sardegna-3.jpg"></a>
-    <a href="#img66"><img src="img/Sardegna-4.jpg"></a>
-    <a href="#img67"><img src="img/Sardegna-5.jpg"></a>
-    <a href="#img68"><img src="img/Sardegna-6.jpg"></a>
-    <a href="#img69"><img src="img/Sardegna-7.jpg"></a>
-    <a href="#img70"><img src="img/Sardegna-8.jpg"></a>
-    <a href="#img71"><img src="img/Sardegna-9.jpg"></a>
-    <a href="#img72"><img src="img/Sardegna-10.jpg"></a>
-    <a href="#img73"><img src="img/Sardegna-11.jpg"></a>
-    <a href="#img74"><img src="img/Sardegna-12.jpg"></a>
-    <a href="#img75"><img src="img/Sardegna-13.jpg"></a>
-    <a href="#img76"><img src="img/Sardegna-14.jpg"></a>
-    <a href="#img77"><img src="img/Sardegna-15.jpg"></a>
-    <a href="#img78"><img src="img/Sardegna-16.jpg"></a>
+    <img src="img/Sardegna-1.jpg" alt="">
+    <img src="img/Sardegna-2.jpg" alt="">
+    <img src="img/Sardegna-3.jpg" alt="">
+    <img src="img/Sardegna-4.jpg" alt="">
+    <img src="img/Sardegna-5.jpg" alt="">
+    <img src="img/Sardegna-6.jpg" alt="">
+    <img src="img/Sardegna-7.jpg" alt="">
+    <img src="img/Sardegna-8.jpg" alt="">
+    <img src="img/Sardegna-9.jpg" alt="">
+    <img src="img/Sardegna-10.jpg" alt="">
+    <img src="img/Sardegna-11.jpg" alt="">
+    <img src="img/Sardegna-12.jpg" alt="">
+    <img src="img/Sardegna-13.jpg" alt="">
+    <img src="img/Sardegna-14.jpg" alt="">
+    <img src="img/Sardegna-15.jpg" alt="">
+    <img src="img/Sardegna-16.jpg" alt="">
 
     <!-- Sibilla -->
-    <a href="#img79"><img src="img/Sibilla-1.jpg"></a>
-    <a href="#img80"><img src="img/Sibilla-2.jpg"></a>
-    <a href="#img81"><img src="img/Sibilla-3.jpg"></a>
-    <a href="#img82"><img src="img/Sibilla-4.jpg"></a>
-    <a href="#img83"><img src="img/Sibilla-5.jpg"></a>
-    <a href="#img84"><img src="img/Sibilla-6.jpg"></a>
+    <img src="img/Sibilla-1.jpg" alt="">
+    <img src="img/Sibilla-2.jpg" alt="">
+    <img src="img/Sibilla-3.jpg" alt="">
+    <img src="img/Sibilla-4.jpg" alt="">
+    <img src="img/Sibilla-5.jpg" alt="">
+    <img src="img/Sibilla-6.jpg" alt="">
 
-    <!-- Torino 01 -->
-    <a href="#img85"><img src="img/Torino 01-1.jpg"></a>
-    <a href="#img86"><img src="img/Torino 01-2.jpg"></a>
-    <a href="#img87"><img src="img/Torino 01-3.jpg"></a>
-    <a href="#img88"><img src="img/Torino 01-4.jpg"></a>
-    <a href="#img89"><img src="img/Torino 01-5.jpg"></a>
-    <a href="#img90"><img src="img/Torino 01-6.jpg"></a>
-    <a href="#img91"><img src="img/Torino 01-7.jpg"></a>
-    <a href="#img92"><img src="img/Torino 01-8.jpg"></a>
+    <!-- Torino -->
+    <img src="img/Torino 01-1.jpg" alt="">
+    <img src="img/Torino 01-2.jpg" alt="">
+    <img src="img/Torino 01-3.jpg" alt="">
+    <img src="img/Torino 01-4.jpg" alt="">
+    <img src="img/Torino 01-5.jpg" alt="">
+    <img src="img/Torino 01-6.jpg" alt="">
+    <img src="img/Torino 01-7.jpg" alt="">
+    <img src="img/Torino 01-8.jpg" alt="">
+    <img src="img/Torino 02-1.jpg" alt="">
+    <img src="img/Torino 02-2.jpg" alt="">
+    <img src="img/Torino 02-3.jpg" alt="">
+    <img src="img/Torino 02-4.jpg" alt="">
+    <img src="img/Torino 02-5.jpg" alt="">
+    <img src="img/Torino 02-6.jpg" alt="">
+    <img src="img/Torino 02-7.jpg" alt="">
+    <img src="img/Torino 02-8.jpg" alt="">
+    <img src="img/Torino 02-9.jpg" alt="">
+    <img src="img/Torino 02-10.jpg" alt="">
+    <img src="img/Torino 02-11.jpg" alt="">
+    <img src="img/Torino 02-12.jpg" alt="">
+    <img src="img/Torino 03-1.jpg" alt="">
+    <img src="img/Torino 03-2.jpg" alt="">
+    <img src="img/Torino 03-3.jpg" alt="">
+    <img src="img/Torino 03-4.jpg" alt="">
+    <img src="img/Torino 03-5.jpg" alt="">
+    <img src="img/Torino 03-6.jpg" alt="">
+    <img src="img/Torino 03-7.jpg" alt="">
+    <img src="img/Torino 03-8.jpg" alt="">
+  </main>
 
-    <!-- Torino 02 -->
-    <a href="#img93"><img src="img/Torino 02-1.jpg"></a>
-    <a href="#img94"><img src="img/Torino 02-2.jpg"></a>
-    <a href="#img95"><img src="img/Torino 02-3.jpg"></a>
-    <a href="#img96"><img src="img/Torino 02-4.jpg"></a>
-    <a href="#img97"><img src="img/Torino 02-5.jpg"></a>
-    <a href="#img98"><img src="img/Torino 02-6.jpg"></a>
-    <a href="#img99"><img src="img/Torino 02-7.jpg"></a>
-    <a href="#img100"><img src="img/Torino 02-8.jpg"></a>
-    <a href="#img101"><img src="img/Torino 02-9.jpg"></a>
-    <a href="#img102"><img src="img/Torino 02-10.jpg"></a>
-    <a href="#img103"><img src="img/Torino 02-11.jpg"></a>
-    <a href="#img104"><img src="img/Torino 02-12.jpg"></a>
-
-    <!-- Torino 03 -->
-    <a href="#img105"><img src="img/Torino 03-1.jpg"></a>
-    <a href="#img106"><img src="img/Torino 03-2.jpg"></a>
-    <a href="#img107"><img src="img/Torino 03-3.jpg"></a>
-    <a href="#img108"><img src="img/Torino 03-4.jpg"></a>
-    <a href="#img109"><img src="img/Torino 03-5.jpg"></a>
-    <a href="#img110"><img src="img/Torino 03-6.jpg"></a>
-    <a href="#img111"><img src="img/Torino 03-7.jpg"></a>
-    <a href="#img112"><img src="img/Torino 03-8.jpg"></a>
+  <!-- Lightbox -->
+  <div class="lb" id="lb">
+    <span class="nav prev" id="prev">&#10094;</span>
+    <img id="lbImg" alt="">
+    <span class="nav next" id="next">&#10095;</span>
   </div>
+
+  <script>
+    // Prende le miniature già presenti nell'HTML e gestisce fullscreen + frecce
+    const thumbs = Array.from(document.querySelectorAll('#grid img'));
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lbImg');
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+    let i = -1;
+
+    thumbs.forEach((img, idx) => {
+      img.loading = 'lazy';
+      img.addEventListener('click', () => open(idx));
+    });
+
+    function open(idx){ i = idx; lbImg.src = thumbs[i].src; lb.classList.add('open'); }
+    function close(){ lb.classList.remove('open'); }
+    function next(){ i = (i+1) % thumbs.length; lbImg.src = thumbs[i].src; }
+    function prev(){ i = (i-1+thumbs.length) % thumbs.length; lbImg.src = thumbs[i].src; }
+
+    nextBtn.onclick = next;
+    prevBtn.onclick = prev;
+    lb.addEventListener('click', e => { if(e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') close();
+      if(e.key === 'ArrowRight') next();
+      if(e.key === 'ArrowLeft') prev();
+    });
+  </script>
 </body>
 </html>
