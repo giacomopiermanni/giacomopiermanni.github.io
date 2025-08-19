@@ -2,38 +2,128 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Progetti</title>
+  <title>Archivio fotografico</title>
   <style>
     body {
-      font-family: "Adobe Arabic", serif;
-      background-color: white;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
+    }
+    header {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.02);
+    }
+    /* fullscreen */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
     }
-    .projects {
-      text-align: center;
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
     }
-    .projects p {
-      font-size: 2em;
-      color: #666;
-      margin: 15px 0;
-    }
-    .projects a {
-      text-decoration: none;
-      color: #666;
-    }
-    .projects a:hover {
-      color: black;
+    .lightbox:target {
+      display: flex;
     }
   </style>
 </head>
 <body>
-  <div class="projects">
-    <p><a href="projects/valle-daosta.html">2025 Valle d'Aosta</a></p>
-    <p><a href="projects/torino.html">2020 Torino</a></p>
+  <header>
+    <div>Archivio fotografico</div>
+    <div><a href="mailto:giacomopiermanni@gmail.com">giacomopiermanni@gmail.com</a></div>
+  </header>
+
+  <div class="gallery">
+    <!-- Inseriamo qui tutte le foto -->
+    <a href="#img1"><img src="img/Aosta-1.jpg" alt=""></a>
+    <a href="#img2"><img src="img/Aosta-2.jpg" alt=""></a>
+    <a href="#img3"><img src="img/Aosta-3.jpg" alt=""></a>
+    <a href="#img4"><img src="img/Aosta-4.jpg" alt=""></a>
+    <a href="#img5"><img src="img/Aosta-5.jpg" alt=""></a>
+    <a href="#img6"><img src="img/Aosta-6.jpg" alt=""></a>
+    <a href="#img7"><img src="img/Aosta-7.jpg" alt=""></a>
+    <a href="#img8"><img src="img/Aosta-8.jpg" alt=""></a>
+    <a href="#img9"><img src="img/Aosta-9.jpg" alt=""></a>
+    <a href="#img10"><img src="img/Aosta-10.jpg" alt=""></a>
+    <a href="#img11"><img src="img/Aosta-11.jpg" alt=""></a>
+    <a href="#img12"><img src="img/Aosta-12.jpg" alt=""></a>
+    <a href="#img13"><img src="img/Aosta-13.jpg" alt=""></a>
+    <a href="#img14"><img src="img/Aosta-14.jpg" alt=""></a>
+
+    <a href="#img15"><img src="img/Castelluccio 01-1.jpg" alt=""></a>
+    <a href="#img16"><img src="img/Castelluccio 01-3.jpg" alt=""></a>
+    <a href="#img17"><img src="img/Castelluccio 01-4.jpg" alt=""></a>
+    <a href="#img18"><img src="img/Castelluccio 01-5.jpg" alt=""></a>
+    <a href="#img19"><img src="img/Castelluccio 01-6.jpg" alt=""></a>
+    <a href="#img20"><img src="img/Castelluccio 01-7.jpg" alt=""></a>
+    <a href="#img21"><img src="img/Castelluccio 01-9.jpg" alt=""></a>
+    <a href="#img22"><img src="img/Castelluccio 01-10.jpg" alt=""></a>
+    <a href="#img23"><img src="img/Castelluccio 01-11.jpg" alt=""></a>
+    <a href="#img24"><img src="img/Castelluccio 01-12.jpg" alt=""></a>
+    <a href="#img25"><img src="img/Castelluccio 01-13.jpg" alt=""></a>
+    <a href="#img26"><img src="img/Castelluccio 01-14.jpg" alt=""></a>
+    <a href="#img27"><img src="img/Castelluccio 01-15.jpg" alt=""></a>
+
+    <a href="#img28"><img src="img/Castelluccio 03-1.jpg" alt=""></a>
+    <a href="#img29"><img src="img/Castelluccio 03-2.jpg" alt=""></a>
+    <a href="#img30"><img src="img/Castelluccio 03-3.jpg" alt=""></a>
+    <a href="#img31"><img src="img/Castelluccio 03-4.jpg" alt=""></a>
+    <a href="#img32"><img src="img/Castelluccio 03-5.jpg" alt=""></a>
+    <a href="#img33"><img src="img/Castelluccio 03-6.jpg" alt=""></a>
+    <a href="#img34"><img src="img/Castelluccio 03-7.jpg" alt=""></a>
+    <a href="#img35"><img src="img/Castelluccio 03-8.jpg" alt=""></a>
+    <a href="#img36"><img src="img/Castelluccio 03-9.jpg" alt=""></a>
+
+    <a href="#img37"><img src="img/Celle-2.jpg" alt=""></a>
+    <a href="#img38"><img src="img/Croazia-1.jpg" alt=""></a>
+    <a href="#img39"><img src="img/Croazia-2.jpg" alt=""></a>
+    <a href="#img40"><img src="img/Croazia-3.jpg" alt=""></a>
+    <a href="#img41"><img src="img/Davide-1.jpg" alt=""></a>
+    <a href="#img42"><img src="img/Davide-2.jpg" alt=""></a>
+    <a href="#img43"><img src="img/Davide-3.jpg" alt=""></a>
+    <a href="#img44"><img src="img/Davide-4.jpg" alt=""></a>
+
+    <a href="#img45"><img src="img/Elena 01-1.jpg" alt=""></a>
+    <a href="#img46"><img src="img/Elena 01-2.jpg" alt=""></a>
+    <a href="#img47"><img src="img/Elena 01-3.jpg" alt=""></a>
+    <a href="#img48"><img src="img/Elena 01-4.jpg" alt=""></a>
+    <a href="#img49"><img src="img/Elena 01-5.jpg" alt=""></a>
+    <a href="#img50"><img src="img/Elena 02-1.jpg" alt=""></a>
+    <a href="#img51"><img src="img/Elena 02-2.jpg" alt=""></a>
+    <a href="#img52"><img src="img/Elena 02-4.jpg" alt=""></a>
+    <a href="#img53"><img src="img/Gabriele-1.jpg" alt=""></a>
+    <a href="#img54"><img src="img/Gabriele-2.jpg" alt=""></a>
+    <a href="#img55"><img src="img/Matteo-1.jpg" alt=""></a>
+
+    <!-- continua con Milano, Praga, Sardegna, Sibilla, Torino... -->
+    <!-- Basta copiare lo stesso schema per tutti i file -->
   </div>
 </body>
 </html>
