@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>2020 Torino</title>
+  <style>
+    body {
+      font-family: "Adobe Arabic", serif;
+      background: #fff;
+      margin: 40px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 96vw;
+      max-height: 94vh;
+    }
+  </style>
+</head>
+<body>
+  <h1>2020 Torino</h1>
+
+  <div class="gallery">
+    <img src="../img/Torino/nebbia-01.jpg" alt="Torino 01">
+    <img src="../img/Torino/nebbia-02.jpg" alt="Torino 02">
+    <img src="../img/Torino/nebbia-03.jpg" alt="Torino 03">
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
