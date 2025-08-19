@@ -2,78 +2,72 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>2020 Torino</title>
+  <title>Torino 2020</title>
   <style>
     body {
       font-family: "Adobe Arabic", serif;
-      background: #fff;
-      margin: 40px;
+      background-color: white;
+      margin: 0;
+      padding: 20px;
       text-align: center;
     }
     h1 {
-      font-size: 2em;
-      color: #555;
-      margin-bottom: 30px;
+      color: #666;
     }
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
     .gallery img {
-      width: 100%;
+      max-width: 300px;
       height: auto;
       cursor: pointer;
+      transition: transform 0.2s;
     }
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95);
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    /* overlay per fullscreen */
+    .overlay {
       display: none;
-      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
       justify-content: center;
-      z-index: 9999;
+      align-items: center;
+      z-index: 1000;
     }
-    .lightbox.open {
-      display: flex;
-    }
-    .lightbox img {
-      max-width: 96vw;
-      max-height: 94vh;
+    .overlay img {
+      max-width: 90%;
+      max-height: 90%;
     }
   </style>
 </head>
 <body>
   <h1>2020 Torino</h1>
-
   <div class="gallery">
-    <img src="../img/Torino/nebbia-01.jpg" alt="Torino 01">
-    <img src="../img/Torino/nebbia-02.jpg" alt="Torino 02">
-    <img src="../img/Torino/nebbia-03.jpg" alt="Torino 03">
+    <img src="../img/Torino/nebbia-01.jpg" alt="Torino 1" onclick="openOverlay(this.src)">
+    <img src="../img/Torino/nebbia-02.jpg" alt="Torino 2" onclick="openOverlay(this.src)">
+    <img src="../img/Torino/nebbia-03.jpg" alt="Torino 3" onclick="openOverlay(this.src)">
   </div>
 
-  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" alt="">
+  <div class="overlay" id="overlay" onclick="closeOverlay()">
+    <img id="overlay-img" src="" alt="">
   </div>
 
   <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    document.querySelectorAll('.gallery img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('open');
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('open');
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') lightbox.classList.remove('open');
-    });
+    function openOverlay(src) {
+      document.getElementById("overlay-img").src = src;
+      document.getElementById("overlay").style.display = "flex";
+    }
+    function closeOverlay() {
+      document.getElementById("overlay").style.display = "none";
+    }
   </script>
 </body>
 </html>
