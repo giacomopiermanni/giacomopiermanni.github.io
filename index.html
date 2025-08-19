@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Giacomo Piermanni — Progetti</title>
+  <meta charset="UTF-8">
+  <title>Progetti</title>
   <style>
-    /* Se il font "Adobe Arabic" è installato sul tuo sistema, verrà usato.
-       Altrimenti userà i serif di sistema come fallback. */
-    html,body{margin:0;background:#fff;color:#222;font-family:"Adobe Arabic","Times New Roman",Georgia,serif}
-    .wrap{max-width:800px;margin:14vh auto;text-align:center;padding:0 16px}
-    ul{list-style:none;margin:0;padding:0}
-    li{margin:14px 0}
-    a{
-      color:inherit;text-decoration:none;
-      font-size:clamp(22px,3.2vw,40px); /* grande ma responsive */
+    body {
+      font-family: "Adobe Arabic", serif;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-    a:focus{outline:none}
+    .projects {
+      text-align: center;
+    }
+    .projects p {
+      font-size: 2em;
+      color: #666;
+      margin: 15px 0;
+    }
+    .projects a {
+      text-decoration: none;
+      color: #666;
+    }
+    .projects a:hover {
+      color: black;
+    }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <ul>
-      <!-- Esempio: 2025 Valle d'Aosta -->
-      <li><a href="projects/valle-daosta.html"><span class="year">2025</span> Valle d'Aosta</a></li>
-
-      <!-- Aggiungerai altre righe così:
-      <li><a href="projects/nome-progetto.html">202X Nome progetto</a></li>
-      -->
-    </ul>
-  </main>
+  <div class="projects">
+    <p><a href="projects/valle-daosta.html">2025 Valle d'Aosta</a></p>
+    <p><a href="projects/torino.html">2020 Torino</a></p>
+  </div>
 </body>
 </html>
