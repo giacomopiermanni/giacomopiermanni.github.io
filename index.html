@@ -47,11 +47,31 @@
   </style>
 </head>
 <body>
-  <header>
-    <div>Archivio fotografico</div>
-    <div><a href="mailto:giacomopiermanni@gmail.com">giacomopiermanni@gmail.com</a></div>
-  </header>
+ <header>
+    <div class="title">Archivio fotografico</div>
+    <div class="email">giacomopiermanni@gmail.com</div>
+    header {
+    position: fixed;       /* 🔒 Fissa in alto */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: white;     /* sfondo bianco fisso */
+    z-index: 1000;         /* sempre davanti alle immagini */
+    border-bottom: 1px solid #ddd; /* sottile linea grigia (opzionale) */
+}
 
+/* per non far coprire le prime immagini */
+body {
+    margin: 0;
+    padding-top: 80px;  /* spazio sotto la barra, regola se serve */
+}
+
+</header>
+ 
   <!-- TUTTE le immagini -->
   <main class="grid" id="grid">
     <!-- Aosta -->
