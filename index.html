@@ -44,33 +44,64 @@
       .tap-zone{ position:absolute; top:0; bottom:0; width:28vw; z-index:10000; }
       .tap-left{ left:0; } .tap-right{ right:0; }
     }
-  </style>
-</head>
-<body>
- <header>
-    <div class="title">Archivio fotografico</div>
-    <div class="email">giacomopiermanni@gmail.com</div>
-    header {
-    position: fixed;       /* 🔒 Fissa in alto */
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: white;     /* sfondo bianco fisso */
-    z-index: 1000;         /* sempre davanti alle immagini */
-    border-bottom: 1px solid #ddd; /* sottile linea grigia (opzionale) */
+<style>
+/* Layout griglia immagini */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
 }
 
-/* per non far coprire le prime immagini */
-body {
-    margin: 0;
-    padding-top: 80px;  /* spazio sotto la barra, regola se serve */
+.grid img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-</header>
+/* Lightbox */
+.lb { 
+  position: fixed; top:0; left:0; right:0; bottom:0; 
+  background: rgba(0,0,0,.95); 
+  display:none; justify-content:center; align-items:center; 
+  z-index: 9999;
+}
+.lb.open { display:flex; }
+.lb img{ max-width:96vw; max-height:94vh; }
+
+/* Frecce desktop */
+.nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  font-size:44px; color:#fff; cursor:pointer; user-select:none;
+  padding:16px; background:rgba(0,0,0,.28);
+  opacity:.6; transition:opacity .15s;
+}
+.nav:hover{ opacity:1; }
+.prev{ left:16px; } .next{ right:16px; }
+
+/* iPhone / touch: nascondi frecce e usa tap-zone invisibili */
+@media (hover:none){
+  .nav{ display:none; }
+  .tap-zone{ position:absolute; top:0; bottom:0; width:28vw; z-index:10000; }
+  .tap-left{ left:0; } .tap-right{ right:0; }
+}
+
+/* HEADER fisso in alto */
+header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  z-index: 10000;
+  box-sizing: border-box;
+}
+
+/* spazio sotto la barra */
+main { padding-top: 64px; }
+</style>
  
   <!-- TUTTE le immagini -->
   <main class="grid" id="grid">
