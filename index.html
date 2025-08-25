@@ -10,6 +10,7 @@
     html,body{
       margin:0; background:#fff; color:var(--fg);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      overflow-x:hidden; /* niente scroll orizzontale */
     }
 
     /* Header fisso */
@@ -22,14 +23,17 @@
     header a{ color:inherit; text-decoration:none; font-size:16px; }
     header a:hover{ text-decoration:underline }
 
-    /* Mobile: più spazio tra titolo e mail + font più piccolo */
+    /* Mobile: header su UNA riga, font un filo più piccolo */
     @media (max-width:600px){
-      header{ flex-direction:column; gap:6px; padding:10px; }
+      header{
+        flex-direction:row; justify-content:space-between; gap:0;
+        padding:10px 12px;
+      }
       header a{ font-size:14px; }
     }
 
     /* Offset per non coprire la prima riga */
-    .offset{ height:50px; }
+    .offset{ height:112px; }
 
     /* Griglia */
     .grid{
@@ -42,6 +46,15 @@
       content-visibility:auto; contain-intrinsic-size:300px 200px;
     }
     .grid img:hover{ transform:scale(1.03); }
+
+    /* Mobile: 3 colonne fisse, thumbs più compatte e padding minore */
+    @media (max-width:600px){
+      .grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:8px; padding:10px 12px;
+      }
+      .grid img{ height:120px; }
+    }
 
     /* Lightbox */
     .lb{
@@ -69,7 +82,7 @@
     }
     .lb .close:hover{ background:rgba(0,0,0,.65) }
 
-    /* Mobile: nascondi frecce, usa tap-zone */
+    /* Mobile: nascondi frecce, usa tap‑zone */
     @media (hover:none){
       .nav{ display:none }
       .tap-zone{ position:absolute; top:0; bottom:0; width:28vw; z-index:20500 }
