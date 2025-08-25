@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Archivio fotografico — Giacomo Piermanni</title>
   <style>
-    :root{ --fg:#111; --line:#ddd; }
+    :root { --fg:#111; --line:#ddd; }
 
     html,body{
       margin:0; background:#fff; color:var(--fg);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     /* Header fisso */
@@ -19,17 +19,24 @@
       padding:14px 16px; background:#fff; border-bottom:1px solid var(--line);
       z-index:10000; box-sizing:border-box;
     }
-    header a{ color:inherit; text-decoration:none }
-    header a:hover{ text-decoration:underline }
 
-    /* Spacer sotto la barra (infallibile) */
-    .offset{ height:60px; }
+    header a{ color:inherit; text-decoration:none; font-size:16px; }
+    header a:hover{ text-decoration:underline; }
+
+    /* Versione mobile: font più piccolo e più spazio */
+    @media (max-width:600px){
+      header{ flex-direction:column; gap:6px; padding:10px; }
+      header a{ font-size:14px; }
+    }
+
+    /* Spacer per non coprire le immagini */
+    .offset{ height:70px; }
 
     /* Griglia immagini */
     .grid{
-      max-width:1400px; margin:0 auto 20px;
-      padding:0 14px;
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;
+      max-width:1400px; margin:0 auto; padding:10px 20px;
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+      gap:10px;
     }
     .grid img{
       width:100%; height:150px; object-fit:cover; display:block;
@@ -39,234 +46,205 @@
     .grid img:hover{ transform:scale(1.03); }
 
     /* Lightbox */
-    .lb{
+    .lightbox{
       position:fixed; inset:0; background:rgba(0,0,0,.95);
-      display:none; align-items:center; justify-content:center; z-index:9999;
+      display:none; align-items:center; justify-content:center;
+      z-index:20000;
     }
-    .lb.open{ display:flex; }
-    .lb img{ max-width:96vw; max-height:94vh; }
-
-    /* Frecce desktop */
-    .nav{
-      position:absolute; top:50%; transform:translateY(-50%);
-      font-size:44px; color:#fff; cursor:pointer; user-select:none;
-      padding:16px; background:rgba(0,0,0,.28); opacity:.7; transition:opacity .15s;
+    .lightbox.open{ display:flex; }
+    .lightbox img{
+      max-width:96vw; max-height:94vh;
     }
-    .nav:hover{ opacity:1 } .prev{ left:16px } .next{ right:16px }
-
-    /* iPhone/touch: nascondi frecce, usa zone invisibili */
-    @media (hover:none){
-      .nav{ display:none }
-      .tap-zone{ position:absolute; top:0; bottom:0; width:28vw; z-index:10000 }
-      .tap-left{ left:0 } .tap-right{ right:0 }
+    .close-btn{
+      position:absolute; top:15px; right:20px;
+      font-size:28px; color:#fff; cursor:pointer;
+      background:rgba(0,0,0,.5); border-radius:4px;
+      padding:6px 10px; z-index:21000;
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <a href="#" id="homeLink">Archivio fotografico</a>
+    <a href="mailto:giacomopiermanni@gmail.com">giacomopiermanni@gmail.com</a>
+  </header>
+  <div class="offset"></div>
 
-  <!-- Header fisso -->
- <header>
-  <a href="#" id="homeLink">Archivio fotografico</a>
-  <a href="mailto:giacomopiermanni@gmail.com">giacomopiermanni@gmail.com</a>
-</header>
-
-  <!-- Offset per non coprire la prima riga -->
-  <div class="offset" aria-hidden="true"></div>
-
-  <!-- Griglia con tutte le immagini -->
+  <!-- Tutte le immagini -->
   <main class="grid" id="grid">
-    <!-- Aosta -->
-    <img src="img/Aosta-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-8.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-9.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-10.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-11.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-12.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-13.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Aosta-14.jpg" alt="" loading="lazy" decoding="async">
+  <!-- Aosta -->
+<img src="img/Aosta-1.jpg" alt="Aosta 1" loading="lazy" decoding="async">
+<img src="img/Aosta-2.jpg" alt="Aosta 2" loading="lazy" decoding="async">
+<img src="img/Aosta-3.jpg" alt="Aosta 3" loading="lazy" decoding="async">
+<img src="img/Aosta-4.jpg" alt="Aosta 4" loading="lazy" decoding="async">
+<img src="img/Aosta-5.jpg" alt="Aosta 5" loading="lazy" decoding="async">
+<img src="img/Aosta-6.jpg" alt="Aosta 6" loading="lazy" decoding="async">
+<img src="img/Aosta-7.jpg" alt="Aosta 7" loading="lazy" decoding="async">
+<img src="img/Aosta-8.jpg" alt="Aosta 8" loading="lazy" decoding="async">
+<img src="img/Aosta-9.jpg" alt="Aosta 9" loading="lazy" decoding="async">
+<img src="img/Aosta-10.jpg" alt="Aosta 10" loading="lazy" decoding="async">
+<img src="img/Aosta-11.jpg" alt="Aosta 11" loading="lazy" decoding="async">
+<img src="img/Aosta-12.jpg" alt="Aosta 12" loading="lazy" decoding="async">
+<img src="img/Aosta-13.jpg" alt="Aosta 13" loading="lazy" decoding="async">
+<img src="img/Aosta-14.jpg" alt="Aosta 14" loading="lazy" decoding="async">
 
-    <!-- Castelluccio 01 -->
-    <img src="img/Castelluccio 01-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-9.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-10.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-11.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-12.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-13.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-14.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 01-15.jpg" alt="" loading="lazy" decoding="async">
+<!-- Castelluccio 01 -->
+<img src="img/Castelluccio 01-1.jpg" alt="Castelluccio 01‑1" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-3.jpg" alt="Castelluccio 01‑3" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-4.jpg" alt="Castelluccio 01‑4" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-5.jpg" alt="Castelluccio 01‑5" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-6.jpg" alt="Castelluccio 01‑6" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-7.jpg" alt="Castelluccio 01‑7" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-9.jpg" alt="Castelluccio 01‑9" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-10.jpg" alt="Castelluccio 01‑10" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-11.jpg" alt="Castelluccio 01‑11" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-12.jpg" alt="Castelluccio 01‑12" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-13.jpg" alt="Castelluccio 01‑13" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-14.jpg" alt="Castelluccio 01‑14" loading="lazy" decoding="async">
+<img src="img/Castelluccio 01-15.jpg" alt="Castelluccio 01‑15" loading="lazy" decoding="async">
 
-    <!-- Castelluccio 03 -->
-    <img src="img/Castelluccio 03-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-8.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Castelluccio 03-9.jpg" alt="" loading="lazy" decoding="async">
+<!-- Castelluccio 03 -->
+<img src="img/Castelluccio 03-1.jpg" alt="Castelluccio 03‑1" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-2.jpg" alt="Castelluccio 03‑2" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-3.jpg" alt="Castelluccio 03‑3" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-4.jpg" alt="Castelluccio 03‑4" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-5.jpg" alt="Castelluccio 03‑5" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-6.jpg" alt="Castelluccio 03‑6" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-7.jpg" alt="Castelluccio 03‑7" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-8.jpg" alt="Castelluccio 03‑8" loading="lazy" decoding="async">
+<img src="img/Castelluccio 03-9.jpg" alt="Castelluccio 03‑9" loading="lazy" decoding="async">
 
-    <!-- Celle + Croazia -->
-    <img src="img/Celle-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Croazia-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Croazia-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Croazia-3.jpg" alt="" loading="lazy" decoding="async">
+<!-- Celle + Croazia -->
+<img src="img/Celle-2.jpg" alt="Celle 2" loading="lazy" decoding="async">
+<img src="img/Croazia-1.jpg" alt="Croazia 1" loading="lazy" decoding="async">
+<img src="img/Croazia-2.jpg" alt="Croazia 2" loading="lazy" decoding="async">
+<img src="img/Croazia-3.jpg" alt="Croazia 3" loading="lazy" decoding="async">
 
-    <!-- Davide -->
-    <img src="img/Davide-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Davide-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Davide-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Davide-4.jpg" alt="" loading="lazy" decoding="async">
+<!-- Davide -->
+<img src="img/Davide-1.jpg" alt="Davide 1" loading="lazy" decoding="async">
+<img src="img/Davide-2.jpg" alt="Davide 2" loading="lazy" decoding="async">
+<img src="img/Davide-3.jpg" alt="Davide 3" loading="lazy" decoding="async">
+<img src="img/Davide-4.jpg" alt="Davide 4" loading="lazy" decoding="async">
 
-    <!-- Elena -->
-    <img src="img/Elena 01-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 01-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 01-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 01-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 01-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 02-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 02-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Elena 02-4.jpg" alt="" loading="lazy" decoding="async">
+<!-- Elena -->
+<img src="img/Elena 01-1.jpg" alt="Elena 01‑1" loading="lazy" decoding="async">
+<img src="img/Elena 01-2.jpg" alt="Elena 01‑2" loading="lazy" decoding="async">
+<img src="img/Elena 01-3.jpg" alt="Elena 01‑3" loading="lazy" decoding="async">
+<img src="img/Elena 01-4.jpg" alt="Elena 01‑4" loading="lazy" decoding="async">
+<img src="img/Elena 01-5.jpg" alt="Elena 01‑5" loading="lazy" decoding="async">
+<img src="img/Elena 02-1.jpg" alt="Elena 02‑1" loading="lazy" decoding="async">
+<img src="img/Elena 02-2.jpg" alt="Elena 02‑2" loading="lazy" decoding="async">
+<img src="img/Elena 02-4.jpg" alt="Elena 02‑4" loading="lazy" decoding="async">
 
-    <!-- Gabriele + Matteo -->
-    <img src="img/Gabriele-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Gabriele-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Matteo-1.jpg" alt="" loading="lazy" decoding="async">
+<!-- Gabriele + Matteo -->
+<img src="img/Gabriele-1.jpg" alt="Gabriele 1" loading="lazy" decoding="async">
+<img src="img/Gabriele-2.jpg" alt="Gabriele 2" loading="lazy" decoding="async">
+<img src="img/Matteo-1.jpg" alt="Matteo 1" loading="lazy" decoding="async">
 
-    <!-- Milano -->
-    <img src="img/Milano 01-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Milano 01-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Milano 01-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Milano 01-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Milano 01-5.jpg" alt="" loading="lazy" decoding="async">
+<!-- Milano -->
+<img src="img/Milano 01-1.jpg" alt="Milano 01‑1" loading="lazy" decoding="async">
+<img src="img/Milano 01-2.jpg" alt="Milano 01‑2" loading="lazy" decoding="async">
+<img src="img/Milano 01-3.jpg" alt="Milano 01‑3" loading="lazy" decoding="async">
+<img src="img/Milano 01-4.jpg" alt="Milano 01‑4" loading="lazy" decoding="async">
+<img src="img/Milano 01-5.jpg" alt="Milano 01‑5" loading="lazy" decoding="async">
 
-    <!-- Praga -->
-    <img src="img/Praga-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Praga-2.jpg" alt="" loading="lazy" decoding="async">
+<!-- Praga -->
+<img src="img/Praga-1.jpg" alt="Praga 1" loading="lazy" decoding="async">
+<img src="img/Praga-2.jpg" alt="Praga 2" loading="lazy" decoding="async">
 
-    <!-- Sardegna -->
-    <img src="img/Sardegna-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-8.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-9.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-10.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-11.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-12.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-13.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-14.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-15.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sardegna-16.jpg" alt="" loading="lazy" decoding="async">
+<!-- Sardegna -->
+<img src="img/Sardegna-1.jpg" alt="Sardegna 1" loading="lazy" decoding="async">
+<img src="img/Sardegna-2.jpg" alt="Sardegna 2" loading="lazy" decoding="async">
+<img src="img/Sardegna-3.jpg" alt="Sardegna 3" loading="lazy" decoding="async">
+<img src="img/Sardegna-4.jpg" alt="Sardegna 4" loading="lazy" decoding="async">
+<img src="img/Sardegna-5.jpg" alt="Sardegna 5" loading="lazy" decoding="async">
+<img src="img/Sardegna-6.jpg" alt="Sardegna 6" loading="lazy" decoding="async">
+<img src="img/Sardegna-7.jpg" alt="Sardegna 7" loading="lazy" decoding="async">
+<img src="img/Sardegna-8.jpg" alt="Sardegna 8" loading="lazy" decoding="async">
+<img src="img/Sardegna-9.jpg" alt="Sardegna 9" loading="lazy" decoding="async">
+<img src="img/Sardegna-10.jpg" alt="Sardegna 10" loading="lazy" decoding="async">
+<img src="img/Sardegna-11.jpg" alt="Sardegna 11" loading="lazy" decoding="async">
+<img src="img/Sardegna-12.jpg" alt="Sardegna 12" loading="lazy" decoding="async">
+<img src="img/Sardegna-13.jpg" alt="Sardegna 13" loading="lazy" decoding="async">
+<img src="img/Sardegna-14.jpg" alt="Sardegna 14" loading="lazy" decoding="async">
+<img src="img/Sardegna-15.jpg" alt="Sardegna 15" loading="lazy" decoding="async">
+<img src="img/Sardegna-16.jpg" alt="Sardegna 16" loading="lazy" decoding="async">
 
-    <!-- Sibilla -->
-    <img src="img/Sibilla-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sibilla-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sibilla-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sibilla-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sibilla-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Sibilla-6.jpg" alt="" loading="lazy" decoding="async">
+<!-- Sibilla -->
+<img src="img/Sibilla-1.jpg" alt="Sibilla 1" loading="lazy" decoding="async">
+<img src="img/Sibilla-2.jpg" alt="Sibilla 2" loading="lazy" decoding="async">
+<img src="img/Sibilla-3.jpg" alt="Sibilla 3" loading="lazy" decoding="async">
+<img src="img/Sibilla-4.jpg" alt="Sibilla 4" loading="lazy" decoding="async">
+<img src="img/Sibilla-5.jpg" alt="Sibilla 5" loading="lazy" decoding="async">
+<img src="img/Sibilla-6.jpg" alt="Sibilla 6" loading="lazy" decoding="async">
 
-    <!-- Torino -->
-    <img src="img/Torino 01-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 01-8.jpg" alt="" loading="lazy" decoding="async">
+<!-- Torino 01 -->
+<img src="img/Torino 01-1.jpg" alt="Torino 01‑1" loading="lazy" decoding="async">
+<img src="img/Torino 01-2.jpg" alt="Torino 01‑2" loading="lazy" decoding="async">
+<img src="img/Torino 01-3.jpg" alt="Torino 01‑3" loading="lazy" decoding="async">
+<img src="img/Torino 01-4.jpg" alt="Torino 01‑4" loading="lazy" decoding="async">
+<img src="img/Torino 01-5.jpg" alt="Torino 01‑5" loading="lazy" decoding="async">
+<img src="img/Torino 01-6.jpg" alt="Torino 01‑6" loading="lazy" decoding="async">
+<img src="img/Torino 01-7.jpg" alt="Torino 01‑7" loading="lazy" decoding="async">
+<img src="img/Torino 01-8.jpg" alt="Torino 01‑8" loading="lazy" decoding="async">
 
-    <img src="img/Torino 02-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-8.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-9.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-10.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-11.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 02-12.jpg" alt="" loading="lazy" decoding="async">
+<!-- Torino 02 -->
+<img src="img/Torino 02-1.jpg" alt="Torino 02‑1" loading="lazy" decoding="async">
+<img src="img/Torino 02-2.jpg" alt="Torino 02‑2" loading="lazy" decoding="async">
+<img src="img/Torino 02-3.jpg" alt="Torino 02‑3" loading="lazy" decoding="async">
+<img src="img/Torino 02-4.jpg" alt="Torino 02‑4" loading="lazy" decoding="async">
+<img src="img/Torino 02-5.jpg" alt="Torino 02‑5" loading="lazy" decoding="async">
+<img src="img/Torino 02-6.jpg" alt="Torino 02‑6" loading="lazy" decoding="async">
+<img src="img/Torino 02-7.jpg" alt="Torino 02‑7" loading="lazy" decoding="async">
+<img src="img/Torino 02-8.jpg" alt="Torino 02‑8" loading="lazy" decoding="async">
+<img src="img/Torino 02-9.jpg" alt="Torino 02‑9" loading="lazy" decoding="async">
+<img src="img/Torino 02-10.jpg" alt="Torino 02‑10" loading="lazy" decoding="async">
+<img src="img/Torino 02-11.jpg" alt="Torino 02‑11" loading="lazy" decoding="async">
+<img src="img/Torino 02-12.jpg" alt="Torino 02‑12" loading="lazy" decoding="async">
 
-    <img src="img/Torino 03-1.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-2.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-3.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-4.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-5.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-6.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-7.jpg" alt="" loading="lazy" decoding="async">
-    <img src="img/Torino 03-8.jpg" alt="" loading="lazy" decoding="async">
+<!-- Torino 03 -->
+<img src="img/Torino 03-1.jpg" alt="Torino 03‑1" loading="lazy" decoding="async">
+<img src="img/Torino 03-2.jpg" alt="Torino 03‑2" loading="lazy" decoding="async">
+<img src="img/Torino 03-3.jpg" alt="Torino 03‑3" loading="lazy" decoding="async">
+<img src="img/Torino 03-4.jpg" alt="Torino 03‑4" loading="lazy" decoding="async">
+<img src="img/Torino 03-5.jpg" alt="Torino 03‑5" loading="lazy" decoding="async">
+<img src="img/Torino 03-6.jpg" alt="Torino 03‑6" loading="lazy" decoding="async">
+<img src="img/Torino 03-7.jpg" alt="Torino 03‑7" loading="lazy" decoding="async">
+<img src="img/Torino 03-8.jpg" alt="Torino 03‑8" loading="lazy" decoding="async">
+
   </main>
 
   <!-- Lightbox -->
-  <div class="lb" id="lb" aria-modal="true" role="dialog">
-    <span class="nav prev" id="prev" aria-label="Foto precedente">&#10094;</span>
-    <img id="lbImg" alt="">
-    <span class="nav next" id="next" aria-label="Foto successiva">&#10095;</span>
-    <div class="tap-zone tap-left" id="tapLeft" aria-hidden="true"></div>
-    <div class="tap-zone tap-right" id="tapRight" aria-hidden="true"></div>
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">✕</span>
+    <img src="" alt="">
   </div>
 
   <script>
-    // Attiva click e lazy
-    const thumbs=[...document.querySelectorAll('#grid img')];
-    thumbs.forEach(im=>{
-      im.loading='lazy'; im.decoding='async';
-      im.addEventListener('click',()=>openLB(im));
+    const gridImages = document.querySelectorAll('.grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = document.getElementById('closeBtn');
+    const homeLink = document.getElementById('homeLink');
+
+    gridImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('open');
+      });
     });
 
-    const lb=document.getElementById('lb');
-    const lbImg=document.getElementById('lbImg');
-    const nextBtn=document.getElementById('next');
-    const prevBtn=document.getElementById('prev');
-    const tapLeft=document.getElementById('tapLeft');
-    const tapRight=document.getElementById('tapRight');
-    let i=-1;
-
-    function openLB(el){ i=thumbs.indexOf(el); lbImg.src=el.src; lb.classList.add('open'); document.body.style.overflow='hidden'; }
-    function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; lbImg.src=''; }
-    function next(){ if(!thumbs.length) return; i=(i+1)%thumbs.length; lbImg.src=thumbs[i].src; }
-    function prev(){ if(!thumbs.length) return; i=(i-1+thumbs.length)%thumbs.length; lbImg.src=thumbs[i].src; }
-
-    nextBtn.onclick=next; prevBtn.onclick=prev;
-    tapLeft.onclick=prev; tapRight.onclick=next;
-    lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
-    document.addEventListener('keydown',e=>{
-      if(!lb.classList.contains('open')) return;
-      if(e.key==='Escape') closeLB();
-      if(e.key==='ArrowRight') next();
-      if(e.key==='ArrowLeft') prev();
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('open');
     });
 
-    // Swipe mobile
-    let touchX=null,touchY=null;
-    lb.addEventListener('touchstart',e=>{
-      if(!lb.classList.contains('open')) return;
-      const t=e.changedTouches[0]; touchX=t.clientX; touchY=t.clientY;
-    },{passive:true});
-    lb.addEventListener('touchend',e=>{
-      if(touchX===null) return;
-      const t=e.changedTouches[0];
-      const dx=t.clientX-touchX, dy=t.clientY-touchY;
-      if(Math.abs(dx)>40 && Math.abs(dy)<60){ dx<0?next():prev(); }
-      touchX=touchY=null;
-    },{passive:true});
+    // Cliccando su "Archivio fotografico" chiude il lightbox
+    homeLink.addEventListener('click', e => {
+      e.preventDefault();
+      lightbox.classList.remove('open');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
   </script>
 </body>
 </html>
