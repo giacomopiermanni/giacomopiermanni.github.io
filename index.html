@@ -23,16 +23,7 @@
     header a{ color:inherit; text-decoration:none; font-size:16px; }
     header a:hover{ text-decoration:underline }
 
-    /* Mobile: header su UNA riga, font un filo più piccolo */
-    @media (max-width:600px){
-      header{
-        flex-direction:row; justify-content:space-between; gap:0;
-        padding:10px 12px;
-      }
-      header a{ font-size:14px; }
-    }
-
-    /* Offset per non coprire la prima riga */
+    /* Offset desktop */
     .offset{ height:90px; }
 
     /* Griglia */
@@ -47,8 +38,19 @@
     }
     .grid img:hover{ transform:scale(1.03); }
 
-    /* Mobile: 3 colonne fisse, thumbs più compatte e padding minore */
+    /* Mobile */
     @media (max-width:600px){
+      /* Header mobile su una riga */
+      header{
+        flex-direction:row; justify-content:space-between; gap:0;
+        padding:10px 12px;
+      }
+      header a{ font-size:14px; }
+
+      /* Offset più basso su mobile */
+      .offset{ height:80px; }
+
+      /* Griglia 3 colonne */
       .grid{
         grid-template-columns:repeat(3,1fr);
         gap:8px; padding:10px 12px;
@@ -82,7 +84,7 @@
     }
     .lb .close:hover{ background:rgba(0,0,0,.65) }
 
-    /* Mobile: nascondi frecce, usa tap‑zone */
+    /* Mobile: nascondi frecce, usa tap-zone */
     @media (hover:none){
       .nav{ display:none }
       .tap-zone{ position:absolute; top:0; bottom:0; width:28vw; z-index:20500 }
@@ -99,7 +101,7 @@
   </header>
   <div class="offset" aria-hidden="true"></div>
 
-  <!-- Griglia con tutte le immagini -->
+  <!-- Griglia con immagini -->
   <main class="grid" id="grid">
     <!-- Aosta -->
     <img src="img/Aosta-1.jpg" alt="Aosta 1" loading="lazy" decoding="async">
@@ -242,6 +244,7 @@
     <img src="img/Torino 03-8.jpg" alt="Torino 03‑8" loading="lazy" decoding="async">
   </main>
 
+
   <!-- Lightbox -->
   <div class="lb" id="lb" aria-modal="true" role="dialog">
     <span class="close" id="lbClose" aria-label="Chiudi">&times;</span>
@@ -253,7 +256,6 @@
   </div>
 
   <script>
-    // Attiva il lightbox
     const thumbs=[...document.querySelectorAll('#grid img')];
     const lb=document.getElementById('lb');
     const lbImg=document.getElementById('lbImg');
@@ -279,10 +281,8 @@
     tapLeft.onclick=prev; tapRight.onclick=next;
     lbClose.onclick=closeLB;
 
-    // Clic fuori dall'immagine chiude
     lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
 
-    // Tasti
     document.addEventListener('keydown',e=>{
       if(!lb.classList.contains('open')) return;
       if(e.key==='Escape') closeLB();
@@ -290,7 +290,6 @@
       if(e.key==='ArrowLeft') prev();
     });
 
-    // Swipe mobile
     let sx=null, sy=null;
     lb.addEventListener('touchstart',e=>{
       if(!lb.classList.contains('open')) return;
@@ -303,7 +302,6 @@
       sx=sy=null;
     },{passive:true});
 
-    // Click su "Archivio fotografico" = chiudi e vai in cima
     homeLink.addEventListener('click',(e)=>{
       e.preventDefault();
       closeLB();
