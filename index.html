@@ -20,9 +20,11 @@
       padding:14px 16px; background:#fff; border-bottom:1px solid var(--line);
       z-index:10000; box-sizing:border-box;
     }
-    <a href="#" id="homeLink"><strong>Archivio fotografico</strong></a>
     header a{ color:inherit; text-decoration:none; font-size:16px; }
     header a:hover{ text-decoration:underline }
+
+    /* Archivio fotografico in grassetto */
+    header a#homeLink { font-weight:bold; }
 
     /* Offset desktop */
     .offset{ height:90px; }
@@ -46,11 +48,10 @@
         flex-direction:row; justify-content:space-between; gap:0;
         padding:10px 12px;
       }
-      <a href="#" id="homeLink"><strong>Archivio fotografico</strong></a>
       header a{ font-size:14px; }
 
       /* Offset più basso su mobile */
-      .offset{ height:60px; }
+      .offset{ height:80px; }
 
       /* Griglia 3 colonne */
       .grid{
@@ -105,6 +106,7 @@
 
   <!-- Griglia con immagini -->
   <main class="grid" id="grid">
+    
     <!-- Aosta -->
     <img src="img/Aosta-1.jpg" alt="Aosta 1" loading="lazy" decoding="async">
     <img src="img/Aosta-2.jpg" alt="Aosta 2" loading="lazy" decoding="async">
@@ -246,6 +248,7 @@
     <img src="img/Torino 03-8.jpg" alt="Torino 03‑8" loading="lazy" decoding="async">
   </main>
 
+  </main>
 
   <!-- Lightbox -->
   <div class="lb" id="lb" aria-modal="true" role="dialog">
