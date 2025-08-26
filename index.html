@@ -10,7 +10,7 @@
     html,body{
       margin:0; background:#fff; color:var(--fg);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      overflow-x:hidden; /* niente scroll orizzontale */
+      overflow-x:hidden;
     }
 
     /* Header fisso */
@@ -22,8 +22,6 @@
     }
     header a{ color:inherit; text-decoration:none; font-size:16px; }
     header a:hover{ text-decoration:underline }
-
-    /* Archivio fotografico in grassetto */
     header a#homeLink { font-weight:bold; }
 
     /* Offset desktop */
@@ -35,7 +33,11 @@
       display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px;
     }
     .grid img{
-      width:100%; height:150px; object-fit:cover; display:block;
+      width:100%;
+      aspect-ratio: 3 / 2;
+      height:auto;
+      object-fit:cover;
+      display:block;
       cursor:zoom-in; background:#f4f4f4; transition:transform .15s ease;
       content-visibility:auto; contain-intrinsic-size:300px 200px;
     }
@@ -43,22 +45,13 @@
 
     /* Mobile */
     @media (max-width:600px){
-      /* Header mobile su una riga */
       header{
         flex-direction:row; justify-content:space-between; gap:0;
         padding:10px 12px;
       }
       header a{ font-size:14px; }
-
-      /* Offset più basso su mobile */
       .offset{ height:60px; }
-
-      /* Griglia 3 colonne */
-      .grid{
-        grid-template-columns:repeat(3,1fr);
-        gap:8px; padding:10px 12px;
-      }
-      .grid img{ height:120px; }
+      .grid{ grid-template-columns:repeat(3,1fr); gap:8px; padding:10px 12px; }
     }
 
     /* Lightbox */
@@ -77,7 +70,7 @@
     }
     .nav:hover{ opacity:1 } .prev{ left:16px } .next{ right:16px }
 
-    /* Pulsante X chiusura */
+    /* Pulsante X */
     .lb .close{
       position:absolute; top:16px; right:22px;
       font-size:36px; line-height:1; font-weight:700;
@@ -87,7 +80,7 @@
     }
     .lb .close:hover{ background:rgba(0,0,0,.65) }
 
-    /* Mobile: nascondi frecce, usa tap-zone */
+    /* Mobile: niente frecce, tap-zone */
     @media (hover:none){
       .nav{ display:none }
       .tap-zone{ position:absolute; top:0; bottom:0; width:28vw; z-index:20500 }
@@ -104,148 +97,150 @@
   </header>
   <div class="offset" aria-hidden="true"></div>
 
-  <!-- Griglia con immagini (THUMBS in src, ORIGINALI in data-full) -->
+  <!-- Griglia con thumbs -->
   <main class="grid" id="grid">
+
     <!-- Aosta -->
-    <img src="img/thumbs/Aosta-1.jpg" data-full="img/Aosta-1.jpg" alt="Aosta 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-2.jpg" data-full="img/Aosta-2.jpg" alt="Aosta 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-3.jpg" data-full="img/Aosta-3.jpg" alt="Aosta 3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-4.jpg" data-full="img/Aosta-4.jpg" alt="Aosta 4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-5.jpg" data-full="img/Aosta-5.jpg" alt="Aosta 5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-6.jpg" data-full="img/Aosta-6.jpg" alt="Aosta 6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-7.jpg" data-full="img/Aosta-7.jpg" alt="Aosta 7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-8.jpg" data-full="img/Aosta-8.jpg" alt="Aosta 8" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-9.jpg" data-full="img/Aosta-9.jpg" alt="Aosta 9" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-10.jpg" data-full="img/Aosta-10.jpg" alt="Aosta 10" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-11.jpg" data-full="img/Aosta-11.jpg" alt="Aosta 11" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-12.jpg" data-full="img/Aosta-12.jpg" alt="Aosta 12" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-13.jpg" data-full="img/Aosta-13.jpg" alt="Aosta 13" loading="lazy" decoding="async">
-    <img src="img/thumbs/Aosta-14.jpg" data-full="img/Aosta-14.jpg" alt="Aosta 14" loading="lazy" decoding="async">
+    <img src="img/thumbs/Aosta-1.jpg" data-full="img/Aosta-1.jpg" alt="Aosta 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-2.jpg" data-full="img/Aosta-2.jpg" alt="Aosta 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-3.jpg" data-full="img/Aosta-3.jpg" alt="Aosta 3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-4.jpg" data-full="img/Aosta-4.jpg" alt="Aosta 4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-5.jpg" data-full="img/Aosta-5.jpg" alt="Aosta 5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-6.jpg" data-full="img/Aosta-6.jpg" alt="Aosta 6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-7.jpg" data-full="img/Aosta-7.jpg" alt="Aosta 7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-8.jpg" data-full="img/Aosta-8.jpg" alt="Aosta 8" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-9.jpg" data-full="img/Aosta-9.jpg" alt="Aosta 9" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-10.jpg" data-full="img/Aosta-10.jpg" alt="Aosta 10" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-11.jpg" data-full="img/Aosta-11.jpg" alt="Aosta 11" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-12.jpg" data-full="img/Aosta-12.jpg" alt="Aosta 12" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-13.jpg" data-full="img/Aosta-13.jpg" alt="Aosta 13" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Aosta-14.jpg" data-full="img/Aosta-14.jpg" alt="Aosta 14" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Castelluccio 01 -->
-    <img src="img/thumbs/Castelluccio 01-1.jpg" data-full="img/Castelluccio 01-1.jpg" alt="Castelluccio 01-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-3.jpg" data-full="img/Castelluccio 01-3.jpg" alt="Castelluccio 01-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-4.jpg" data-full="img/Castelluccio 01-4.jpg" alt="Castelluccio 01-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-5.jpg" data-full="img/Castelluccio 01-5.jpg" alt="Castelluccio 01-5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-6.jpg" data-full="img/Castelluccio 01-6.jpg" alt="Castelluccio 01-6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-7.jpg" data-full="img/Castelluccio 01-7.jpg" alt="Castelluccio 01-7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-9.jpg" data-full="img/Castelluccio 01-9.jpg" alt="Castelluccio 01-9" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-10.jpg" data-full="img/Castelluccio 01-10.jpg" alt="Castelluccio 01-10" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-11.jpg" data-full="img/Castelluccio 01-11.jpg" alt="Castelluccio 01-11" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-12.jpg" data-full="img/Castelluccio 01-12.jpg" alt="Castelluccio 01-12" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-13.jpg" data-full="img/Castelluccio 01-13.jpg" alt="Castelluccio 01-13" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-14.jpg" data-full="img/Castelluccio 01-14.jpg" alt="Castelluccio 01-14" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 01-15.jpg" data-full="img/Castelluccio 01-15.jpg" alt="Castelluccio 01-15" loading="lazy" decoding="async">
-
+    <img src="img/thumbs/Castelluccio 01-1.jpg" data-full="img/Castelluccio 01-1.jpg" alt="Castelluccio 01-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-3.jpg" data-full="img/Castelluccio 01-3.jpg" alt="Castelluccio 01-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-4.jpg" data-full="img/Castelluccio 01-4.jpg" alt="Castelluccio 01-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-5.jpg" data-full="img/Castelluccio 01-5.jpg" alt="Castelluccio 01-5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-6.jpg" data-full="img/Castelluccio 01-6.jpg" alt="Castelluccio 01-6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-7.jpg" data-full="img/Castelluccio 01-7.jpg" alt="Castelluccio 01-7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-9.jpg" data-full="img/Castelluccio 01-9.jpg" alt="Castelluccio 01-9" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-10.jpg" data-full="img/Castelluccio 01-10.jpg" alt="Castelluccio 01-10" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-11.jpg" data-full="img/Castelluccio 01-11.jpg" alt="Castelluccio 01-11" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-12.jpg" data-full="img/Castelluccio 01-12.jpg" alt="Castelluccio 01-12" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-13.jpg" data-full="img/Castelluccio 01-13.jpg" alt="Castelluccio 01-13" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-14.jpg" data-full="img/Castelluccio 01-14.jpg" alt="Castelluccio 01-14" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 01-15.jpg" data-full="img/Castelluccio 01-15.jpg" alt="Castelluccio 01-15" loading="lazy" decoding="async" width="400" height="267">
+    
     <!-- Castelluccio 03 -->
-    <img src="img/thumbs/Castelluccio 03-1.jpg" data-full="img/Castelluccio 03-1.jpg" alt="Castelluccio 03-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-2.jpg" data-full="img/Castelluccio 03-2.jpg" alt="Castelluccio 03-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-3.jpg" data-full="img/Castelluccio 03-3.jpg" alt="Castelluccio 03-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-4.jpg" data-full="img/Castelluccio 03-4.jpg" alt="Castelluccio 03-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-5.jpg" data-full="img/Castelluccio 03-5.jpg" alt="Castelluccio 03-5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-6.jpg" data-full="img/Castelluccio 03-6.jpg" alt="Castelluccio 03-6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-7.jpg" data-full="img/Castelluccio 03-7.jpg" alt="Castelluccio 03-7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-8.jpg" data-full="img/Castelluccio 03-8.jpg" alt="Castelluccio 03-8" loading="lazy" decoding="async">
-    <img src="img/thumbs/Castelluccio 03-9.jpg" data-full="img/Castelluccio 03-9.jpg" alt="Castelluccio 03-9" loading="lazy" decoding="async">
+    <img src="img/thumbs/Castelluccio 03-1.jpg" data-full="img/Castelluccio 03-1.jpg" alt="Castelluccio 03-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-2.jpg" data-full="img/Castelluccio 03-2.jpg" alt="Castelluccio 03-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-3.jpg" data-full="img/Castelluccio 03-3.jpg" alt="Castelluccio 03-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-4.jpg" data-full="img/Castelluccio 03-4.jpg" alt="Castelluccio 03-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-5.jpg" data-full="img/Castelluccio 03-5.jpg" alt="Castelluccio 03-5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-6.jpg" data-full="img/Castelluccio 03-6.jpg" alt="Castelluccio 03-6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-7.jpg" data-full="img/Castelluccio 03-7.jpg" alt="Castelluccio 03-7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-8.jpg" data-full="img/Castelluccio 03-8.jpg" alt="Castelluccio 03-8" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Castelluccio 03-9.jpg" data-full="img/Castelluccio 03-9.jpg" alt="Castelluccio 03-9" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Celle + Croazia -->
-    <img src="img/thumbs/Celle-2.jpg" data-full="img/Celle-2.jpg" alt="Celle 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Croazia-1.jpg" data-full="img/Croazia-1.jpg" alt="Croazia 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Croazia-2.jpg" data-full="img/Croazia-2.jpg" alt="Croazia 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Croazia-3.jpg" data-full="img/Croazia-3.jpg" alt="Croazia 3" loading="lazy" decoding="async">
+    <img src="img/thumbs/Celle-2.jpg" data-full="img/Celle-2.jpg" alt="Celle 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Croazia-1.jpg" data-full="img/Croazia-1.jpg" alt="Croazia 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Croazia-2.jpg" data-full="img/Croazia-2.jpg" alt="Croazia 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Croazia-3.jpg" data-full="img/Croazia-3.jpg" alt="Croazia 3" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Davide -->
-    <img src="img/thumbs/Davide-1.jpg" data-full="img/Davide-1.jpg" alt="Davide 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Davide-2.jpg" data-full="img/Davide-2.jpg" alt="Davide 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Davide-3.jpg" data-full="img/Davide-3.jpg" alt="Davide 3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Davide-4.jpg" data-full="img/Davide-4.jpg" alt="Davide 4" loading="lazy" decoding="async">
+    <img src="img/thumbs/Davide-1.jpg" data-full="img/Davide-1.jpg" alt="Davide 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Davide-2.jpg" data-full="img/Davide-2.jpg" alt="Davide 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Davide-3.jpg" data-full="img/Davide-3.jpg" alt="Davide 3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Davide-4.jpg" data-full="img/Davide-4.jpg" alt="Davide 4" loading="lazy" decoding="async" width="400" height="267">
 
-    <!-- Elena -->
-    <img src="img/thumbs/Elena 01-1.jpg" data-full="img/Elena 01-1.jpg" alt="Elena 01-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 01-2.jpg" data-full="img/Elena 01-2.jpg" alt="Elena 01-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 01-3.jpg" data-full="img/Elena 01-3.jpg" alt="Elena 01-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 01-4.jpg" data-full="img/Elena 01-4.jpg" alt="Elena 01-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 01-5.jpg" data-full="img/Elena 01-5.jpg" alt="Elena 01-5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 02-1.jpg" data-full="img/Elena 02-1.jpg" alt="Elena 02-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 02-2.jpg" data-full="img/Elena 02-2.jpg" alt="Elena 02-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 02-3.jpg" data-full="img/Elena 02-3.jpg" alt="Elena 02-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Elena 02-4.jpg" data-full="img/Elena 02-4.jpg" alt="Elena 02-4" loading="lazy" decoding="async">
+        <!-- Elena -->
+    <img src="img/thumbs/Elena 01-1.jpg" data-full="img/Elena 01-1.jpg" alt="Elena 01-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 01-2.jpg" data-full="img/Elena 01-2.jpg" alt="Elena 01-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 01-3.jpg" data-full="img/Elena 01-3.jpg" alt="Elena 01-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 01-4.jpg" data-full="img/Elena 01-4.jpg" alt="Elena 01-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 01-5.jpg" data-full="img/Elena 01-5.jpg" alt="Elena 01-5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 02-1.jpg" data-full="img/Elena 02-1.jpg" alt="Elena 02-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 02-2.jpg" data-full="img/Elena 02-2.jpg" alt="Elena 02-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 02-3.jpg" data-full="img/Elena 02-3.jpg" alt="Elena 02-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Elena 02-4.jpg" data-full="img/Elena 02-4.jpg" alt="Elena 02-4" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Gabriele + Matteo -->
-    <img src="img/thumbs/Gabriele-1.jpg" data-full="img/Gabriele-1.jpg" alt="Gabriele 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Gabriele-2.jpg" data-full="img/Gabriele-2.jpg" alt="Gabriele 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Matteo-1.jpg" data-full="img/Matteo-1.jpg" alt="Matteo 1" loading="lazy" decoding="async">
+    <img src="img/thumbs/Gabriele-1.jpg" data-full="img/Gabriele-1.jpg" alt="Gabriele 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Gabriele-2.jpg" data-full="img/Gabriele-2.jpg" alt="Gabriele 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Matteo-1.jpg" data-full="img/Matteo-1.jpg" alt="Matteo 1" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Milano -->
-    <img src="img/thumbs/Milano 01-1.jpg" data-full="img/Milano 01-1.jpg" alt="Milano 01-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Milano 01-2.jpg" data-full="img/Milano 01-2.jpg" alt="Milano 01-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Milano 01-3.jpg" data-full="img/Milano 01-3.jpg" alt="Milano 01-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Milano 01-4.jpg" data-full="img/Milano 01-4.jpg" alt="Milano 01-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Milano 01-5.jpg" data-full="img/Milano 01-5.jpg" alt="Milano 01-5" loading="lazy" decoding="async">
+    <img src="img/thumbs/Milano 01-1.jpg" data-full="img/Milano 01-1.jpg" alt="Milano 01-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Milano 01-2.jpg" data-full="img/Milano 01-2.jpg" alt="Milano 01-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Milano 01-3.jpg" data-full="img/Milano 01-3.jpg" alt="Milano 01-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Milano 01-4.jpg" data-full="img/Milano 01-4.jpg" alt="Milano 01-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Milano 01-5.jpg" data-full="img/Milano 01-5.jpg" alt="Milano 01-5" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Praga -->
-    <img src="img/thumbs/Praga-1.jpg" data-full="img/Praga-1.jpg" alt="Praga 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Praga-2.jpg" data-full="img/Praga-2.jpg" alt="Praga 2" loading="lazy" decoding="async">
+    <img src="img/thumbs/Praga-1.jpg" data-full="img/Praga-1.jpg" alt="Praga 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Praga-2.jpg" data-full="img/Praga-2.jpg" alt="Praga 2" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Sardegna -->
-    <img src="img/thumbs/Sardegna-1.jpg" data-full="img/Sardegna-1.jpg" alt="Sardegna 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-2.jpg" data-full="img/Sardegna-2.jpg" alt="Sardegna 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-3.jpg" data-full="img/Sardegna-3.jpg" alt="Sardegna 3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-4.jpg" data-full="img/Sardegna-4.jpg" alt="Sardegna 4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-5.jpg" data-full="img/Sardegna-5.jpg" alt="Sardegna 5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-6.jpg" data-full="img/Sardegna-6.jpg" alt="Sardegna 6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-7.jpg" data-full="img/Sardegna-7.jpg" alt="Sardegna 7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-8.jpg" data-full="img/Sardegna-8.jpg" alt="Sardegna 8" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-9.jpg" data-full="img/Sardegna-9.jpg" alt="Sardegna 9" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-10.jpg" data-full="img/Sardegna-10.jpg" alt="Sardegna 10" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-11.jpg" data-full="img/Sardegna-11.jpg" alt="Sardegna 11" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-12.jpg" data-full="img/Sardegna-12.jpg" alt="Sardegna 12" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-13.jpg" data-full="img/Sardegna-13.jpg" alt="Sardegna 13" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-14.jpg" data-full="img/Sardegna-14.jpg" alt="Sardegna 14" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-15.jpg" data-full="img/Sardegna-15.jpg" alt="Sardegna 15" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sardegna-16.jpg" data-full="img/Sardegna-16.jpg" alt="Sardegna 16" loading="lazy" decoding="async">
+    <img src="img/thumbs/Sardegna-1.jpg" data-full="img/Sardegna-1.jpg" alt="Sardegna 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-2.jpg" data-full="img/Sardegna-2.jpg" alt="Sardegna 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-3.jpg" data-full="img/Sardegna-3.jpg" alt="Sardegna 3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-4.jpg" data-full="img/Sardegna-4.jpg" alt="Sardegna 4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-5.jpg" data-full="img/Sardegna-5.jpg" alt="Sardegna 5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-6.jpg" data-full="img/Sardegna-6.jpg" alt="Sardegna 6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-7.jpg" data-full="img/Sardegna-7.jpg" alt="Sardegna 7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-8.jpg" data-full="img/Sardegna-8.jpg" alt="Sardegna 8" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-9.jpg" data-full="img/Sardegna-9.jpg" alt="Sardegna 9" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-10.jpg" data-full="img/Sardegna-10.jpg" alt="Sardegna 10" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-11.jpg" data-full="img/Sardegna-11.jpg" alt="Sardegna 11" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-12.jpg" data-full="img/Sardegna-12.jpg" alt="Sardegna 12" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-13.jpg" data-full="img/Sardegna-13.jpg" alt="Sardegna 13" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-14.jpg" data-full="img/Sardegna-14.jpg" alt="Sardegna 14" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-15.jpg" data-full="img/Sardegna-15.jpg" alt="Sardegna 15" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sardegna-16.jpg" data-full="img/Sardegna-16.jpg" alt="Sardegna 16" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Sibilla -->
-    <img src="img/thumbs/Sibilla-1.jpg" data-full="img/Sibilla-1.jpg" alt="Sibilla 1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sibilla-2.jpg" data-full="img/Sibilla-2.jpg" alt="Sibilla 2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sibilla-3.jpg" data-full="img/Sibilla-3.jpg" alt="Sibilla 3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sibilla-4.jpg" data-full="img/Sibilla-4.jpg" alt="Sibilla 4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sibilla-5.jpg" data-full="img/Sibilla-5.jpg" alt="Sibilla 5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Sibilla-6.jpg" data-full="img/Sibilla-6.jpg" alt="Sibilla 6" loading="lazy" decoding="async">
+    <img src="img/thumbs/Sibilla-1.jpg" data-full="img/Sibilla-1.jpg" alt="Sibilla 1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sibilla-2.jpg" data-full="img/Sibilla-2.jpg" alt="Sibilla 2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sibilla-3.jpg" data-full="img/Sibilla-3.jpg" alt="Sibilla 3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sibilla-4.jpg" data-full="img/Sibilla-4.jpg" alt="Sibilla 4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sibilla-5.jpg" data-full="img/Sibilla-5.jpg" alt="Sibilla 5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Sibilla-6.jpg" data-full="img/Sibilla-6.jpg" alt="Sibilla 6" loading="lazy" decoding="async" width="400" height="267">
 
-    <!-- Torino 01 -->
-    <img src="img/thumbs/Torino 01-1.jpg" data-full="img/Torino 01-1.jpg" alt="Torino 01-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-2.jpg" data-full="img/Torino 01-2.jpg" alt="Torino 01-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-3.jpg" data-full="img/Torino 01-3.jpg" alt="Torino 01-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-4.jpg" data-full="img/Torino 01-4.jpg" alt="Torino 01-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-5.jpg" data-full="img/Torino 01-5.jpg" alt="Torino 01-5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-6.jpg" data-full="img/Torino 01-6.jpg" alt="Torino 01-6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-7.jpg" data-full="img/Torino 01-7.jpg" alt="Torino 01-7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 01-8.jpg" data-full="img/Torino 01-8.jpg" alt="Torino 01-8" loading="lazy" decoding="async">
+        <!-- Torino 01 -->
+    <img src="img/thumbs/Torino 01-1.jpg" data-full="img/Torino 01-1.jpg" alt="Torino 01-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-2.jpg" data-full="img/Torino 01-2.jpg" alt="Torino 01-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-3.jpg" data-full="img/Torino 01-3.jpg" alt="Torino 01-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-4.jpg" data-full="img/Torino 01-4.jpg" alt="Torino 01-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-5.jpg" data-full="img/Torino 01-5.jpg" alt="Torino 01-5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-6.jpg" data-full="img/Torino 01-6.jpg" alt="Torino 01-6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-7.jpg" data-full="img/Torino 01-7.jpg" alt="Torino 01-7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 01-8.jpg" data-full="img/Torino 01-8.jpg" alt="Torino 01-8" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Torino 02 -->
-    <img src="img/thumbs/Torino 02-1.jpg" data-full="img/Torino 02-1.jpg" alt="Torino 02-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-2.jpg" data-full="img/Torino 02-2.jpg" alt="Torino 02-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-3.jpg" data-full="img/Torino 02-3.jpg" alt="Torino 02-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-4.jpg" data-full="img/Torino 02-4.jpg" alt="Torino 02-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-5.jpg" data-full="img/Torino 02-5.jpg" alt="Torino 02-5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-6.jpg" data-full="img/Torino 02-6.jpg" alt="Torino 02-6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-7.jpg" data-full="img/Torino 02-7.jpg" alt="Torino 02-7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-8.jpg" data-full="img/Torino 02-8.jpg" alt="Torino 02-8" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-9.jpg" data-full="img/Torino 02-9.jpg" alt="Torino 02-9" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-10.jpg" data-full="img/Torino 02-10.jpg" alt="Torino 02-10" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-11.jpg" data-full="img/Torino 02-11.jpg" alt="Torino 02-11" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 02-12.jpg" data-full="img/Torino 02-12.jpg" alt="Torino 02-12" loading="lazy" decoding="async">
+    <img src="img/thumbs/Torino 02-1.jpg" data-full="img/Torino 02-1.jpg" alt="Torino 02-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-2.jpg" data-full="img/Torino 02-2.jpg" alt="Torino 02-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-3.jpg" data-full="img/Torino 02-3.jpg" alt="Torino 02-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-4.jpg" data-full="img/Torino 02-4.jpg" alt="Torino 02-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-5.jpg" data-full="img/Torino 02-5.jpg" alt="Torino 02-5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-6.jpg" data-full="img/Torino 02-6.jpg" alt="Torino 02-6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-7.jpg" data-full="img/Torino 02-7.jpg" alt="Torino 02-7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-8.jpg" data-full="img/Torino 02-8.jpg" alt="Torino 02-8" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-9.jpg" data-full="img/Torino 02-9.jpg" alt="Torino 02-9" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-10.jpg" data-full="img/Torino 02-10.jpg" alt="Torino 02-10" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-11.jpg" data-full="img/Torino 02-11.jpg" alt="Torino 02-11" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 02-12.jpg" data-full="img/Torino 02-12.jpg" alt="Torino 02-12" loading="lazy" decoding="async" width="400" height="267">
 
     <!-- Torino 03 -->
-    <img src="img/thumbs/Torino 03-1.jpg" data-full="img/Torino 03-1.jpg" alt="Torino 03-1" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-2.jpg" data-full="img/Torino 03-2.jpg" alt="Torino 03-2" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-3.jpg" data-full="img/Torino 03-3.jpg" alt="Torino 03-3" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-4.jpg" data-full="img/Torino 03-4.jpg" alt="Torino 03-4" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-5.jpg" data-full="img/Torino 03-5.jpg" alt="Torino 03-5" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-6.jpg" data-full="img/Torino 03-6.jpg" alt="Torino 03-6" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-7.jpg" data-full="img/Torino 03-7.jpg" alt="Torino 03-7" loading="lazy" decoding="async">
-    <img src="img/thumbs/Torino 03-8.jpg" data-full="img/Torino 03-8.jpg" alt="Torino 03-8" loading="lazy" decoding="async">
+    <img src="img/thumbs/Torino 03-1.jpg" data-full="img/Torino 03-1.jpg" alt="Torino 03-1" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-2.jpg" data-full="img/Torino 03-2.jpg" alt="Torino 03-2" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-3.jpg" data-full="img/Torino 03-3.jpg" alt="Torino 03-3" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-4.jpg" data-full="img/Torino 03-4.jpg" alt="Torino 03-4" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-5.jpg" data-full="img/Torino 03-5.jpg" alt="Torino 03-5" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-6.jpg" data-full="img/Torino 03-6.jpg" alt="Torino 03-6" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-7.jpg" data-full="img/Torino 03-7.jpg" alt="Torino 03-7" loading="lazy" decoding="async" width="400" height="267">
+    <img src="img/thumbs/Torino 03-8.jpg" data-full="img/Torino 03-8.jpg" alt="Torino 03-8" loading="lazy" decoding="async" width="400" height="267">
+
   </main>
 
   <!-- Lightbox -->
@@ -271,22 +266,20 @@
     let i=-1;
 
     thumbs.forEach(im=>{
-      im.loading='lazy'; im.decoding='async';
       im.addEventListener('click',()=>openLB(im));
     });
 
     function openLB(el){
       i=thumbs.indexOf(el);
       const full = el.dataset.full || el.src;
-      lbImg.loading='eager'; lbImg.decoding='async';
       lbImg.src=full;
       lb.classList.add('open');
       document.body.style.overflow='hidden';
 
-      // Preload prossima
+      // Preload prossima immagine
       const nextI=(i+1)%thumbs.length;
       const nextFull=thumbs[nextI].dataset.full || thumbs[nextI].src;
-      const pre=new Image(); pre.decoding='async'; pre.src=nextFull;
+      const pre=new Image(); pre.src=nextFull;
     }
     function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; lbImg.src=''; }
     function next(){ if(!thumbs.length) return; i=(i+1)%thumbs.length; lbImg.src=thumbs[i].dataset.full || thumbs[i].src; }
@@ -305,6 +298,7 @@
       if(e.key==='ArrowLeft') prev();
     });
 
+    // Swipe mobile
     let sx=null, sy=null;
     lb.addEventListener('touchstart',e=>{
       if(!lb.classList.contains('open')) return;
@@ -317,6 +311,7 @@
       sx=sy=null;
     },{passive:true});
 
+    // Click su "Archivio fotografico" chiude la foto e torna su
     homeLink.addEventListener('click',(e)=>{
       e.preventDefault();
       closeLB();
